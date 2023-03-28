@@ -11,25 +11,15 @@ class PostDetail(DetailView):
     model=Post
 
 
-# def index(request):
-#
-#     posts = Post.objects.all().order_by('-pk')
-#     return render(
-#         request,
-#         'blog/index.html',
-#         {
-#             'posts' : posts,
-#         }
-#     )
+def index(request):
 
-def single_post_page(request, pnum):
-    post = Post.objects.get(pk=pnum)
-
+    posts = Post.objects.all().order_by('-pk')
     return render(
         request,
-        'blog/post_detail.html',
+        'blog/index.html',
         {
-            'post' : post,
+            'posts' : posts,
         }
     )
+
 
