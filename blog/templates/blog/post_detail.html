@@ -71,6 +71,7 @@
         <!-- Date/Time -->
         <p>Posted on {{ post.created_at }}</p>
 
+
         <hr>
 
         <!-- Preview Image -->
@@ -95,6 +96,10 @@
                 <a href="{{ tag.get_absolute_url }}">{{ tag }} </a>
             {% endfor %}
             </i>
+        {% endif %}
+
+        {% if user.is_authenticated and user == post.author  %}
+            <br><a href ="/blog/update_post/{{ post.pk }}">글 수정하기</a>
         {% endif %}
 
         <!-- Comments Form -->
