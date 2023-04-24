@@ -7,20 +7,28 @@
 <body>
 <h4>This is my First Django Web</h4>
 
-{% for post in recent_posts %}
-    <div>
-        <h6><a href="{{ post.get_absolute_url }}">{{ post.title }} by {{ post.author.username }}</a></h6>
-        <p>{{ post.get_content_markdown | truncatewords_html:30 | safe }}</p>
-    </div>
 
 
-{% endfor %}
-<br>
 <nav>
     <a href="/blog/">Blog</a><br><br>
     <a href="/about_me/">About Me</a>
 
 </nav>
+
+<hr>
+
+<h5>Recent 3 Postings</h5>
+{% for post in recent_posts %}
+    <div>
+        <h4><a href="{{ post.get_absolute_url }}">제목 : {{ post.title }} by {{ post.author.username }}</a></h4>
+        <p>{{ post.get_hook_markdown | truncatewords_html:30 | safe }}</p>
+    </div>
+    <hr>
+
+
+{% endfor %}
+<br>
+
 
 </body>
 </html>

@@ -9,7 +9,7 @@ from .models import Post, Category, Tag
 
 class PostUpdate(LoginRequiredMixin, UpdateView):
     model=Post
-    fields=['title','content','head_image','file_upload','category','tag']
+    fields=['title','hook','content','head_image','file_upload','category','tag']
 
     template_name='blog/post_form_update.html'
 
@@ -25,7 +25,7 @@ class PostUpdate(LoginRequiredMixin, UpdateView):
 
 class PostCreate(LoginRequiredMixin,UserPassesTestMixin,CreateView):
     model = Post
-    fields=['title','content','head_image','file_upload','category','tag']
+    fields=['title','hook','content','head_image','file_upload','category','tag']
 
     def test_func(self):
         return self.request.user.is_superuser or self.request.user.is_staff
@@ -75,7 +75,8 @@ def categories_page(request, slug):
         'category' : category,
         'categories' : Category.objects.all(),
         'post_list' : post_list,
-        'no_category_count' : Post.objects.filter(category=None).count()
+        'no_category_count' : Post.objects.filter(category=None).count(),
+        #'category_count' : Post.objects.filter(category=category).count()
     }
     return render(request, 'blog/post_list.html', context)
 
@@ -106,7 +107,7 @@ def add_comment(request, pk):
         comment_temp.author = request.user
         comment_temp.save()
 
-        return redirect(post.get_absolute_url())
+        return redirect(comment_temp.get_absolute_url())
 
     else :
         raise PermissionError

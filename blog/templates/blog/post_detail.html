@@ -100,7 +100,7 @@
         {% endif %}
 
         {% if user.is_authenticated and user == post.author  %}
-            <br><a href ="/blog/update_post/{{ post.pk }}">글 수정하기</a>
+            <br><a href ="/blog/post_update/{{ post.pk }}">글 수정하기</a>
         {% endif %}
 
         <!-- Comments Form -->
@@ -114,6 +114,7 @@
               </div>
               <button type="submit" class="btn btn-primary">Submit</button>
             </form>
+              {{ comment_form.media }}
           </div>
         </div>
           {% if post.comment_set.exists %}
@@ -124,7 +125,7 @@
                   <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
                   <div class="media-body">
                       <h5 class="mt-0">{{ comment.author }}-{{ comment.created_at }}</h5>
-                      <p>{{ comment.content }}</p>
+                      <p>{{ comment.get_content_markdown | safe }}</p>
                   </div>
               </div>
 

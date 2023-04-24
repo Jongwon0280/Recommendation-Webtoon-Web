@@ -34,6 +34,7 @@ class Category(models.Model):
 
 class Post(models.Model):
     title = models.CharField(max_length=30)
+    hook = MarkdownxField()
     content = MarkdownxField()
 
     head_image = models.ImageField(upload_to='blog/images/%Y/%m/%d/', blank=True)
@@ -55,12 +56,16 @@ class Post(models.Model):
     def get_file_name(self):
         return os.path.basename(self.file_upload.name)
     def get_content_markdown(self):
+        #랜더링한 마크다운 전송
         return markdown(self.content)
+    def get_hook_markdown(self):
+        #랜더링한 마크다운 전송
+        return markdown(self.hook)
 #대댓글 기능?
 class Comment(models.Model):
     post = models.ForeignKey(Post,on_delete=models.CASCADE)
     author = models.ForeignKey(User,on_delete=models.CASCADE)
-    content = models.TextField()
+    content = MarkdownxField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -69,6 +74,10 @@ class Comment(models.Model):
 
     def get_absolute_url(self):
         return f'{self.post.get_absolute_url()}#comment-{self.pk}'
+
+    def get_content_markdown(self):
+        #랜더링한 마크다운 전송
+        return markdown(self.content)
 
 
 

@@ -10,7 +10,7 @@
             {% endif %}
     {% endif %}
 
-     <h1>Blog{% if category %} postings with cateogry {{ category }}
+     <h1>Blog{% if category %} postings with category {{ category }}
 
     {% endif %}
      {% if tag %} postings with Tag {{ tag }}
@@ -27,7 +27,7 @@
                     {% endif %}
                     <div class="card-body">
                         <h2 class="card-title">{{ p.title}} ({{ p.category }})</h2>
-                        <p class="card-text">{{ p.get_content_markdown | truncatewords_html:45 | safe }}</p>
+                        <p class="card-text">{{ p.get_hook_markdown | truncatewords_html:45 | safe }}</p>
 
                         <a href="{{ p.get_absolute_url }}" class="btn btn-primary">Read More &rarr;</a>
                     </div>
