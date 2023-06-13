@@ -1,8 +1,9 @@
 from django.urls import path
 from . import views
+from django.urls import  include
 
 
 urlpatterns = [
-    path('about_me/',views.about_me),
+    #path('/webtoon/',include("webtoon.urls")),
     path('',views.main),
 ]
