@@ -15,10 +15,12 @@
 <body>
 
 <div class="container">
-    <h2 class="text-center mt-3">선택 웹툰: {{ selected_image.웹툰이름 }}</h2>
+    <h2 class="text-center mt-3"><strong>선택 웹툰: {{ selected_image.웹툰이름 }}</strong></h2>
     <br>
-    <p class="text-center"><strong>클릭하면 웹툰 링크로 연결됩니다.</strong></p>
+    <p class="text-center " style="font-size: 20px;">클릭하면 웹툰 링크로 연결됩니다.</p>
+
     <hr>
+
     <div class="text-center">
         <a href="{{ selected_image.웹툰디테일경로 }}">
             <img src="{{ selected_image.썸네일경로 }}" alt="{{ selected_image.웹툰이름 }}" class="img-thumbnail">
@@ -26,8 +28,15 @@
         <p class="text-center mt-2"><strong>{{ selected_image.웹툰이름 }}</strong></p>
     </div>
     <h4 class="mt-4 text-center">선택하신 그림체와 비슷한 웹툰 리스트입니다.</h4>
+<br>
+    <div class="text-center">
+        <a href="/blog" class="btn btn-secondary">커뮤니티로 이동</a>
+        <a href="/" class="btn btn-secondary">홈으로 이동</a>
 
-    <h2 class="text-center mt-5">Similar Images</h2>
+    </div>
+
+
+    <h2 class="text-center mt-5">비슷한 그림체를 가진 웹툰</h2>
     <hr>
     <div class="row justify-content-center">
         {% for row in similar_images  %}

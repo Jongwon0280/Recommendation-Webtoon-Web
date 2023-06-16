@@ -1,51 +1,90 @@
 {% extends 'blog/base.html' %}
 
-
 {% block main_area %}
-
-    {%  if user.is_authenticated %}
-
-            <a class="btn btn-info btn-sm float-right" href="/blog/create_post/" role="button"><i class="fas fa-pen"></i>&nbsp;New Post</a>
-
-
+    {% if user.is_authenticated %}
+        <a class="btn btn-info btn-sm float-right" href="/blog/create_post/" role="button"><i class="fas fa-pen"></i>&nbsp;New Post</a>
     {% endif %}
 
-     <h1>Blog{% if category %} postings with category {{ category }}
+    <div class="container mt-4">
+        <h1 class="text-center" style="font-family: 'Arial', sans-serif; font-size: 28px; font-weight: bold;">웹툰커뮤니티{% if category %} {{ category }}{% endif %}</h1>
+    <br>
+    <p class="text-center" style="font-family: 'Verdana', sans-serif; font-size: 16px;">네이버웹툰 커뮤니티 입니다.</p>
+    <br>
+        <p class="text-center" style="font-family: 'Georgia', serif; font-size: 18px; font-style: italic;"><strong>이미지를 클릭하면 웹툰으로 이동합니다.</strong></p>
+    <p class="text-center" style="font-family: 'Georgia', serif; font-size: 13px; font-style: italic;">상단의 Refresh시 새로운 웹툰을 표시합니다.</p>
 
-    {% endif %}
-     {% if tag %} postings with Tag {{ tag }}
-     {%  endif %}
-     </h1>
 
-                {% for p in post_list %}
-                <!-- Blog Post -->
-                <div class="card mb-4">
-                    {% if p.head_image %}
-                        <img class="card-img-top" src="{{ p.head_image.url }}" alt="Card image cap">
-                    {% else %}
-                         <img class="card-img-top" src="https://picsum.photos/800/200" alt="random_image">
-                    {% endif %}
-                    <div class="card-body">
-                        <h2 class="card-title">{{ p.title}} ({{ p.category }})</h2>
-                        <p class="card-text">{{ p.get_hook_markdown | truncatewords_html:45 | safe }}</p>
+        {% if random_images.empty %}
+            <p class="text-center">No random images available.</p>
+        {% else %}
+            <div class="row justify-content-center">
+                {% for index, row in random_images.iterrows %}
+                    <div class="col-md-3 text-center">
+                        <div class="image-container">
+                            <a href="{{ row.웹툰디테일경로 }}" class="text-decoration-none"><img src="{{ row.썸네일경로 }}" alt="Random Image" style="width: 130px; height: 130px;"></a>
 
-                        <a href="{{ p.get_absolute_url }}" class="btn btn-primary">Read More &rarr;</a>
+                        </div>
+                        <p class="mt-2"><strong>{{ row.웹툰이름 }}</strong></p>
                     </div>
-                    <div class="card-footer text-muted">
-                        Posted on {{ p.created_at}} by
-                        <a href="#"> {{ p.author }})</a>
-                    </div>
-                </div>
                 {% endfor %}
+            </div>
+        {% endif %}
+      <div class="text-center mt-4">
+            <button class="btn btn-primary btn-sm refresh-button" onclick="location.reload()">
+                <i class="fas fa-sync-alt"></i> Refresh
+            </button>
+        </div>
 
+        <h1 class="text-center">{% if tag %}postings with Tag {{ tag }}{% endif %}</h1>
 
-                <!-- Pagination -->
-                <ul class="pagination justify-content-center mb-4">
-                    <li class="page-item">
-                        <a class="page-link" href="#">&larr; Older</a>
-                    </li>
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#">Newer &rarr;</a>
-                    </li>
-                </ul>
+        {% for p in post_list %}
+            <!-- Blog Post -->
+            <div class="card mb-4">
+                {% if p.head_image %}
+                    <img class="card-img-top" src="{{ p.head_image.url }}" alt="Card image cap">
+                {% else %}
+                    <img class="card-img-top" src="https://picsum.photos/800/200" alt="random_image">
+                {% endif %}
+                <div class="card-body">
+                    <h2 class="card-title">{{ p.title }} ({{ p.category }})</h2>
+                    <p class="card-text">{{ p.get_hook_markdown | truncatewords_html:45 | safe }}</p>
+
+                    <a href="{{ p.get_absolute_url }}" class="btn btn-primary">Read More &rarr;</a>
+                </div>
+                <div class="card-footer text-muted">
+                    Posted on {{ p.created_at }} by
+                    <a href="#"> {{ p.author }})</a>
+                </div>
+            </div>
+        {% endfor %}
+
+        <!-- Pagination -->
+        <ul class="pagination justify-content-center mb-4">
+            <li class="page-item">
+                <a class="page-link" href="#">&larr; Older</a>
+            </li>
+            <li class="page-item disabled">
+                <a class="page-link" href="#">Newer &rarr;</a>
+            </li>
+        </ul>
+    </div>
+
+    <style>
+        .image-container {
+            position: relative;
+        }
+
+        .refresh-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #888;
+            font-size: 18px;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .refresh-button:hover {
+            color: #333;
+        }
+    </style>
 {% endblock %}

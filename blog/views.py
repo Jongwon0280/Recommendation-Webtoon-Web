@@ -2,10 +2,20 @@ from django.core.exceptions import PermissionDenied
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.conf import settings
 
+from webtoon.views import select_random_images
 from.forms import CommentForm
 
 from .models import Post, Category, Tag
+
+import pandas as pd
+import os
+import numpy as np
+import random
+
+webtoon_df = pd.DataFrame()
+
 
 class PostUpdate(LoginRequiredMixin, UpdateView):
     model=Post
@@ -42,15 +52,26 @@ class PostCreate(LoginRequiredMixin,UserPassesTestMixin,CreateView):
 class PostList(ListView):
     model = Post
     ordering = '-pk'
+    global webtoon_df
+    # 웹툰 데이터프레임 로드
+    csv_file_path = os.path.join(settings.STATIC_ROOT, 'webtoon', 'webtoon0607.csv')
+    webtoon_df = pd.read_csv(csv_file_path)
 
     def get_context_data(self, *, object_list=None, **kwargs):
-        context = super(PostList, self).get_context_data()
+        context = super().get_context_data(**kwargs)
+
+
+
+
+
+        # 군집별로 랜덤 이미지 선택
+        random_images = select_random_images(webtoon_df, 5)
+
+        context['random_images'] = random_images
         context['categories'] = Category.objects.all()
         context['no_category_count'] = Post.objects.filter(category=None).count()
 
-
         return context
-
 class PostDetail(DetailView):
     model = Post
 
@@ -64,15 +85,21 @@ class PostDetail(DetailView):
 
 
 def categories_page(request, slug):
-    if slug=='no-category':
-        category = '미분류'
-        post_list = Post.objects.filter(category=None)
-    else :
-        category = Category.objects.get(slug=slug)
-        post_list = Post.objects.filter(category=category)
+    global webtoon_df
+
+    category = Category.objects.get(slug=slug)
+    post_list = Post.objects.filter(category=category)
+
+
+
+    # 군집별로 랜덤 이미지 선택
+    random_images = select_random_images(webtoon_df, 5)
+
+
 
     context = {
         'category' : category,
+        'random_images' : random_images,
         'categories' : Category.objects.all(),
         'post_list' : post_list,
         'no_category_count' : Post.objects.filter(category=None).count(),

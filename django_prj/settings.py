@@ -87,16 +87,16 @@ WSGI_APPLICATION = 'django_prj.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-'''DATABASES = {
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
-}'''
+}
 
 #DATABASES['default'] = dj_database_url.config(conn_max_age=600)
 
-DATABASES = {
+'''DATABASES = {
     'default': {
         'ENGINE': 'mysql.connector.django',
         'NAME': "op_ac19975d_b08e_44c2_843b_2812eae08189",
@@ -105,7 +105,7 @@ DATABASES = {
         'HOST': "115.68.198.187",
         'PORT': "13307"
     }
-}
+}'''
 
 
 
