@@ -1,4 +1,11 @@
 ### Style Extraction
+
+<br>
+
+<div style="text-align: center;">
+    <img src="https://github.com/Jongwon0280/Recommendation-Webtoon-Web/assets/56438131/a5a24115-9e93-4925-bc8a-a51e2db51edf" alt="image" style="display: inline-block; width: 50%; height: auto;">
+</div>
+
 크롤링한 웹툰의 상세정보들을 토대로 특성추출과 차원축소 및 군집화를 진행하였다.
 
 <br>
@@ -66,17 +73,10 @@
 
 <br>
 
-**1. Kmeans(K=5) 시각화**
-
-<div style="text-align: center;">
-    <img src="https://github.com/Jongwon0280/Recommendation-Webtoon-Web/assets/56438131/a5a24115-9e93-4925-bc8a-a51e2db51edf" alt="image" style="display: inline-block; width: 60%; height: auto;">
-</div>
-
-<br>
-<br>
 
 
-**2. 최종 CSV**
+
+**최종 CSV**
 
 <div style="text-align: center;">
     <img src="https://github.com/Jongwon0280/Recommendation-Webtoon-Web/assets/56438131/a014d81c-6f73-4152-8c08-a5e1748c737f" alt="image" style="display: inline-block; width: 60%; height: auto;">
