@@ -1,6 +1,13 @@
 # 웹툰 상세정보 크롤링
 <br>
 
+
+
+<div style="text-align: center;">
+    <img src="https://github.com/Jongwon0280/Recommendation-Webtoon-Web/assets/56438131/4f39a189-a32e-492e-a39c-289c0ee8a8e1" alt="image" style="display: inline-block; width: 70%; height: auto;">
+</div>
+
+
 > 웹툰 썸네일 이미지 및 상세정보(제목, 상세페이지경로)를 얻기위해 크롤링하였습니다.
 >
 > 사용 기술 : Selenium
