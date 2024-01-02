@@ -44,6 +44,7 @@ N사의 요일별웹툰의 썸네일 이미지의 그림체를 활용한 웹툰�
   <img src="https://github.com/Jongwon0280/Recommendation-Webtoon-Web/assets/56438131/5ae2c4ec-e3cb-47f1-b442-09683b73f6db" alt="이미지 설명" width=650 height=300 >
 </div>
 
+<br>
 
 ### 이미지 임베딩 추출
 > **데이터셋**
@@ -81,38 +82,18 @@ N사의 요일별웹툰의 썸네일 이미지의 그림체를 활용한 웹툰�
   <img src="https://github.com/Jongwon0280/Recommendation-Webtoon-Web/assets/56438131/4384a0a7-414e-4065-afa3-cbaa2174ba29" alt="이미지 설명" width=350 height=300 >
 </div>
 
+### 웹툰 추천
+>
+> 5가지 군집별 랜덤으로 썸네일 이미지를 사용자에게 보여주고, 특정 이미지 선택시 군집에서 Euclidean거리를 기준으로 10종의 웹툰을 추천 
 
->**1. 웹툰의 썸네일 이미지에서 스타일을 추출하고 사용자가 원하는 그림체와 비슷한 웹툰을 추천**
-
-<br>
-
->**2. 커뮤니티를 통해 유저간의 소통 및 추천에 대한 불편사항 제보**
-
-
-
+<div style="text-align: center;">
+    <img src="https://github.com/Jongwon0280/Recommendation-Webtoon-Web/assets/56438131/a14a05b9-87b8-4e45-9318-d82b1a4bfb89" alt="image" style="display: inline-block; width: 70%; height: auto;">
+</div>
 
 <br>
 <br>
 
-> 아래링크로 이동하면 스타일 추출과 크롤링에 대해서 자세히 다루고 있습니다. <br><br>
-<a href="https://github.com/Jongwon0280/Recommendation-Webtoon-Web/tree/main/crawling">1. 크롤링으로 이동</a><br><br>
-<a href="https://github.com/Jongwon0280/Recommendation-Webtoon-Web/tree/main/style_extraction">2. 스타일 추출로 이동</a>
-
-
-
- 
-
-
-
-
-
-
-
-<br>
-<br>
-
-### 산출물
-<br>
+### 웹페이지
 
 ### 1. 그림체별 웹툰추천
 
